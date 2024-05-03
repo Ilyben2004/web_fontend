@@ -1,0 +1,30 @@
+.theForm{
+    width: 75%;
+    margin: 10% auto;
+
+    
+}
+.button-container {
+    display: flex;
+    justify-content: center; /* Horizontally centers the buttons */
+    align-items: center; /* Vertically centers the buttons if the height of the container is set */
+     /* Optional: set height of the container to the viewport height */
+}
+
+.button-container button {
+    margin: 8% 3%; /* Optional: add some spacing between the buttons */
+    height: 40px;
+    width: 120px;
+    color: white;
+    border: none;
+    border-radius: 5%;
+}
+button#logInBttn{
+    background-color: black;
+  
+}
+.button-container button:last-child {
+   
+    background-color: #6960f8;
+    
+}

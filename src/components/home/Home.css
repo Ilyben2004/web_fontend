@@ -1,0 +1,61 @@
+/* Reset styles for height and width */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0; /* Add padding reset */
+    border: 0; /* Add border reset */
+    background-color: #F4F0F0;
+    box-sizing: border-box; /* Add box-sizing */
+}
+
+/* App container takes the full height of the body */
+.app-containerCC {
+    height: 100vh;
+    width: 100vw; /* Specify width in vw */
+    box-sizing: border-box; /* Add box-sizing */
+    overflow: hidden;   
+     background-color: #F4F0F0;
+
+}
+
+.containerCC {
+   
+    height: 90%;
+    width: 100%;
+    box-sizing: border-box; /* Add box-sizing */
+    display: flex;
+    
+}
+
+.descreptionCC{
+   
+    width: 40%;
+    position: relative;
+
+
+
+}
+.imageCC{
+    padding: 2%;
+   
+   
+}
+.textContainerCC{
+    text-align: center;
+   
+    width: 70%;
+font-size: 30px;
+font-weight: bolder;
+margin:35% auto;
+
+
+}
+.button{
+    margin-top: 8%;
+}
+.imageCC img{
+
+    
+ width: 50vw;
+}
