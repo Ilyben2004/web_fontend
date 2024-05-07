@@ -1,0 +1,27 @@
+
+.icons{
+    font-size: 30px;
+    cursor: pointer;
+}
+.edit:hover{
+   color: rgba(79, 79, 165, 0.818);
+   font-size: 32px;
+
+    
+
+}
+.delete:hover{
+    color: rgba(247, 82, 82, 0.818);
+    font-size: 32px;
+
+ 
+ }
+ .updateForm{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 30%;
+    height: 70%;
+    background-color: beige;
+
+ }
