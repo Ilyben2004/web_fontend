@@ -1,0 +1,41 @@
+.SideBarController{
+    background-color: white;
+
+
+}.centered-container {
+    display: flex;
+    justify-content: center; /* Centers the SVG horizontally */
+    align-items: center; /* Centers the SVG vertically */
+    height: 90vh; /* Sets the height of the container to fill the viewport height */
+  }
+  #mySideBar{
+    background-color: white;
+  }
+
+  #mySideBar div{
+  }
+
+  #mySideBar .phoneContainer{
+height: 60px;
+display: flex;
+cursor: pointer;
+border-bottom: rgba(0, 0, 0, 0.103) 0.4px solid;
+
+  }
+  #mySideBar .phoneContainer:hover{
+    background-color: rgba(22, 123, 42, 0.206);
+  }
+  #mySideBar .svgContainer{
+    width: 20%;
+    border-radius: 50%;
+   padding-left: 2%;
+   padding-top: 1%;
+
+  }
+  #mySideBar .informationsContainer{
+
+  }
+.OwnerName{
+    font-weight: bold;
+    color: rgba(22, 123, 42, 0.806);
+}
