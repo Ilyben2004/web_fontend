@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import { FaRegEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import './listphone.css';
-
+import PhoneSvg from './PhoneSvg';
 // Initialize the ListPhone component
 function ListPhone() {
     const [phones, setPhones] = useState([]);
@@ -60,6 +60,7 @@ function ListPhone() {
 
     // Function to handle selecting a phone for editing
     function handleEdit(phone) {
+        console.log(phone.id);
         setSelectedPhone(phone);
         setFormData({
             ownerName: phone.ownerName,
@@ -115,7 +116,8 @@ function ListPhone() {
 
     return (
         <>
-            <Table responsive>
+        <div id="tableContainerInsinde">
+            <Table id='PhonesTableList' responsive>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -153,62 +155,77 @@ function ListPhone() {
                     ))}
                 </tbody>
             </Table>
+            </div>
 
             {/* Form for editing phone entries */}
             {selectedPhone && (
+                <div className="formContainer">
                 <form className='updateForm' onSubmit={handleUpdate}>
-                    <h3>Edit Phone</h3>
-                    <div>
-                        <label>Owner Name</label>
-                        <input
-                            type="text"
-                            value={formData.ownerName}
-                            onChange={(e) => setFormData({ ...formData, ownerName: e.target.value })}
-                        />
-                    </div>
-                    <div>
-                        <label>Phone Model</label>
-                        <input
-                            type="text"
-                            value={formData.libelle}
-                            onChange={(e) => setFormData({ ...formData, libelle: e.target.value })}
-                        />
-                    </div>
-                    <div>
-                        <label>Type</label>
-                        <input
-                            type="text"
-                            value={formData.type}
-                            onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                        />
-                    </div>
-                    <div>
-                        <label>City</label>
-                        <input
-                            type="text"
-                            value={formData.city}
-                            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                        />
-                    </div>
-                    <div>
-                        <label>Phone Number</label>
-                        <input
-                            type="text"
-                            value={formData.phoneNumber}
-                            onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
-                        />
-                    </div>
-                    <div>
-                        <label>Email</label>
-                        <input
-                            type="text"
-                            value={formData.email}
-                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        />
-                    </div>
-                    <button type="submit">Update</button>
-                    <button type="button" onClick={() => setSelectedPhone(null)}>Cancel</button>
+                  <div className="header">
+                    <PhoneSvg />
+
+                 
+                  </div>
+                  <hr />
+                  <div className="tableContainer">
+                  <table>
+    <tr>
+        <td><label>Owner Name : </label></td>
+        <td><input
+                type="text"
+                value={formData.ownerName}
+                onChange={(e) => setFormData({ ...formData, ownerName: e.target.value })}
+            /></td>
+    </tr>
+    <tr>
+        <td><label>Phone Model : </label></td>
+        <td><input
+                type="text"
+                value={formData.libelle}
+                onChange={(e) => setFormData({ ...formData, libelle: e.target.value })}
+            /></td>
+    </tr>
+    <tr>
+        <td><label>Type : </label></td>
+        <td><input
+                type="text"
+                value={formData.type}
+                onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+            /></td>
+    </tr>
+    <tr>
+        <td><label>City : </label></td>
+        <td><input
+                type="text"
+                value={formData.city}
+                onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+            /></td>
+    </tr>
+    <tr>
+        <td><label>Phone Number : </label></td>
+        <td><input
+                type="text"
+                value={formData.phoneNumber}
+                onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+            /></td>
+    </tr>
+    <tr>
+        <td><label>Email : </label></td>
+        <td><input
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            /></td>
+    </tr>
+</table>
+</div>
+<div className="button-container"><button id="ubdateButton"  type="submit">Update</button>
+                    <button  id="cancelButton" type="button" onClick={() => setSelectedPhone(null)}>Cancel</button></div>
+
+                   
+                    
                 </form>
+                </div>
             )}
         </>
     );

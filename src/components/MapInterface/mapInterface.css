@@ -1,0 +1,21 @@
+#containerMap{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border: blue solid 1px;
+    display: flex;
+}
+#containerMap div{
+    height: 100vh;
+   
+    
+}
+.phonesContainer{
+    width: 30%;
+}
+.mapContainer{
+    width: 70%;
+}
+#iamMap{
+    width: 100%;
+}

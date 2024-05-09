@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from '../header/Header';
 import AddPhoneForme from './AddPhoneForme';
-import PhoneSvg from './PhoneSvg';
+import ListPhone from '../phoneList/ListPhone';
+import './AddPhone.css'
 
 
 
@@ -30,8 +31,10 @@ function AddPhone() {
                             </div>
                    <AddPhoneForme />
                 </div>
-                <div className="imageCC">
-                    <PhoneSvg />
+                <div id="tableContainer" className="imageCC">
+                    {/* <PhoneSvg /> */}
+                   < ListPhone />
+
                  
 
                 </div>
