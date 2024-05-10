@@ -3,10 +3,10 @@ import { Sidebar } from 'primereact/sidebar';
 import OpenSideBarSvg from './OpenSideBarSvg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './sidebar.css';
-import PhoneSvg from './PhoneSvg';
 import { format } from 'date-fns';
+import SvgRedLocation from '../mapContainer/SvgRedLocation'
 
-export default function BasicDemo({ phones,  onDefaultCenterChange }) {
+export default function TargetLocations({ phones,  onDefaultCenterChange }) {
     const [visible, setVisible] = useState(false);
 
     // Handler function to update the default center when a phone entry is clicked
@@ -17,10 +17,11 @@ export default function BasicDemo({ phones,  onDefaultCenterChange }) {
 
     return (
         <div className="card flex justify-content-center">
-            <Sidebar id='mySideBar' visible={visible} onHide={() => setVisible(false)}>
+            {/* Set the position prop to 'right' to display the sidebar on the right side */}
+            <Sidebar id='mySideBar' visible={visible} onHide={() => setVisible(false)} position="right">
                 {phones.map((phone, index) => {
                     // Parse the date string from phone.phone.updated_at
-                    const updatedAt = new Date(phone.phone.updated_at);
+                    const updatedAt = new Date(phone.phone.created_at);
                     
                     // Format the date and time
                     const formattedDateTime = format(updatedAt, 'MM/dd/yyyy HH:mm:ss');
@@ -32,7 +33,7 @@ export default function BasicDemo({ phones,  onDefaultCenterChange }) {
                             onClick={() => handleButtonClick(phone.latitude, phone.longitude)}
                         >
                             <div className="svgContainer">
-                                <PhoneSvg />
+                                <SvgRedLocation />
                             </div>
                             <div className="informationsContainer">
                                 <div className="OwnerName">{phone.phone.ownerName}</div>

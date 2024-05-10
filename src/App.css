@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+.sendLocationButton{
+ margin-left: 20%;
+ height: 40px;
+ background-color:#6960f8 ;
+}

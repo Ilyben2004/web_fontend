@@ -4,12 +4,15 @@ import Header from '../header/Header';
 import MyMap from '../mapContainer/MyMap';
 import './mapInterface.css';
 import Sidebar from './Sidebar';
+import TargetLocations from './TargetLocations'
 
 function MapInterface() {
     // State for default center
     const [defaultCenter, setDefaultCenter] = useState([0, 0]);
 
     const [phones, setPhones] = useState([]);
+    const [targetLocations, setTargetLocations] = useState([]);
+
     
     useEffect(() => {
         const fetchData = () => {
@@ -21,9 +24,19 @@ function MapInterface() {
                     console.error('Error fetching phone locations:', error);
                 });
         };
+        const fetchDataTargetLocations = () => {
+            axios.get('http://127.0.0.1:8000/api/target-locations')
+                .then((response) => {
+                    setTargetLocations(response.data.data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching phone Target locations:', error);
+                });
+        };
 
         fetchData();
-        const intervalId = setInterval(fetchData, 1000);
+        fetchDataTargetLocations();
+        const intervalId = setInterval(fetchData, 5000);
         return () => clearInterval(intervalId);
     }, []);
 
@@ -43,6 +56,10 @@ function MapInterface() {
                 <div id="mapContainer">
                     <MyMap phones={phones} defaultCenter={defaultCenter} />
                 </div>
+                <div id="sideBarContainer">
+                    <TargetLocations phones={targetLocations} defaultCenter={defaultCenter} onDefaultCenterChange={handleDefaultCenterChange} />
+                </div>
+             
             </div>
         </div>
     );
