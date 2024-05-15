@@ -7,7 +7,8 @@ import Alert from 'react-bootstrap/Alert';
 
 
 
-function AddPhoneForm() {
+function AddPhoneForm(fetchPhones) {
+   
     // State variables
     const [ownerName, setOwnerName] = useState('');
     const [libelle, setLibelle] = useState('');
@@ -36,8 +37,11 @@ function AddPhoneForm() {
             // Send a POST request to your API endpoint
             const response = await axios.post('http://127.0.0.1:8000/api/phones', phoneData);
             // If the response is successful, display a success message
+            console.log("xxxxxxxxxxxxx")
+
             if (response.status === 201) {
-                setSuccess(true);
+           
+             
 
                 // Clear form fields
                 setOwnerName('');
@@ -46,7 +50,11 @@ function AddPhoneForm() {
                 setCity('');
                 setPhoneNumber('');
                 setEmail('');
+                setSuccess(true);
                 setTimeout(() => setSuccess(false), 3000);
+                await fetchPhones();
+                           
+
             }
         } catch (error) {
             // Handle errors

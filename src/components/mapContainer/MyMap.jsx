@@ -14,7 +14,7 @@ L.Icon.Default.mergeOptions({
     shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-function MyMap({ phones, defaultCenter }) {
+function MyMap({ phones, defaultCenter,OnSelectedLocationChange ,selectedLocation, addTargetLocation}) {
     
     const customRedIcon = L.divIcon({
         html: ReactDOMServer.renderToStaticMarkup(<SvgRedLocation />),
@@ -26,12 +26,13 @@ function MyMap({ phones, defaultCenter }) {
     
     // State and refs
     const mapRef = useRef(null);
-    const [selectedLocation, setSelectedLocation] = useState(null);
 
     // Event handler for map clicks
     function handleMapClick(event) {
         const { lat, lng } = event.latlng;
-        setSelectedLocation([lat, lng]);
+        const newLocation = [lat, lng];
+
+        OnSelectedLocationChange(newLocation);
     }
 
     async function handleSendLocation(phoneId, lat, lng) {
@@ -44,8 +45,9 @@ function MyMap({ phones, defaultCenter }) {
 
             // Log success
             console.log('Location sent to the database:', response.data);
+            addTargetLocation(response.data.data);
 
-            setSelectedLocation(null);
+            OnSelectedLocationChange(null);
         } catch (error) {
             console.error('Error sending location:', error);
         }
@@ -73,7 +75,7 @@ function MyMap({ phones, defaultCenter }) {
         <MapContainer
             center={defaultCenter}
             zoom={13}
-            style={{ height: '100%', width: '100%' }}
+            style={{ height: '100%', width: '100%' , position:'fixed' }}
             ref={mapRef}
         >
             <TileLayer

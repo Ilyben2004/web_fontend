@@ -39,3 +39,13 @@ border-bottom: rgba(0, 0, 0, 0.103) 0.4px solid;
     font-weight: bold;
     color: rgba(22, 123, 42, 0.806);
 }
+.informationsContainer{
+  width: 60%;
+}
+.DeleteSvgContainer{
+  padding-top: 1%;
+}
+
+.delete-svg-container:hover .delete-svg path {
+  stroke: rgb(209, 98, 98); /* Change the stroke color of the path to red on hover */
+}

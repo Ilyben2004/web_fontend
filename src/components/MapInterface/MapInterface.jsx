@@ -9,6 +9,8 @@ import TargetLocations from './TargetLocations'
 function MapInterface() {
     // State for default center
     const [defaultCenter, setDefaultCenter] = useState([0, 0]);
+    const [selectedLocation, setSelectedLocation] = useState(null);
+
 
     const [phones, setPhones] = useState([]);
     const [targetLocations, setTargetLocations] = useState([]);
@@ -33,9 +35,10 @@ function MapInterface() {
                     console.error('Error fetching phone Target locations:', error);
                 });
         };
+        fetchDataTargetLocations();
 
         fetchData();
-        fetchDataTargetLocations();
+        
         const intervalId = setInterval(fetchData, 5000);
         return () => clearInterval(intervalId);
     }, []);
@@ -45,6 +48,18 @@ function MapInterface() {
     const handleDefaultCenterChange = (newCenter) => {
         setDefaultCenter(newCenter);
     };
+    const handleSelectedLocations = (newCenter) => {
+        setSelectedLocation(newCenter);
+    };
+    const filterTargetLocations = (id) => {
+       setTargetLocations(targetLocations.filter((phone) => phone.id !== id));
+
+    };
+    const addTargetLocation = (newTargetLocation) => {
+        // Use setTargetLocations to update the state with a new array that includes the new target location
+        setTargetLocations((prevTargetLocations) => [...prevTargetLocations, newTargetLocation]);
+    };
+
 
     return (
         <div className="app-containerCC">
@@ -54,10 +69,10 @@ function MapInterface() {
                     <Sidebar phones={phones} defaultCenter={defaultCenter} onDefaultCenterChange={handleDefaultCenterChange} />
                 </div>
                 <div id="mapContainer">
-                    <MyMap phones={phones} defaultCenter={defaultCenter} />
+                    <MyMap phones={phones} defaultCenter={defaultCenter} selectedLocation={selectedLocation} OnSelectedLocationChange={handleSelectedLocations} addTargetLocation={addTargetLocation}  />
                 </div>
                 <div id="sideBarContainer">
-                    <TargetLocations phones={targetLocations} defaultCenter={defaultCenter} onDefaultCenterChange={handleDefaultCenterChange} />
+                    <TargetLocations phones={targetLocations} selectedLocation={selectedLocation} defaultCenter={defaultCenter} onDefaultCenterChange={handleDefaultCenterChange} OnSelectedLocationChange={handleSelectedLocations} filterTargetLocations={filterTargetLocations}  />
                 </div>
              
             </div>
