@@ -64,6 +64,7 @@ function MapInterface() {
     return (
         <div className="app-containerCC">
             <Header />
+           
             <div className='HomeContainercc'>
                 <div id="sideBarContainer">
                     <Sidebar phones={phones} defaultCenter={defaultCenter} onDefaultCenterChange={handleDefaultCenterChange} />
@@ -76,6 +77,7 @@ function MapInterface() {
                 </div>
              
             </div>
+            
         </div>
     );
 }

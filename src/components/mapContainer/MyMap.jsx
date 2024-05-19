@@ -15,7 +15,8 @@ L.Icon.Default.mergeOptions({
 });
 
 function MyMap({ phones, defaultCenter,OnSelectedLocationChange ,selectedLocation, addTargetLocation}) {
-    
+    const [description, setDescription] = useState('');
+
     const customRedIcon = L.divIcon({
         html: ReactDOMServer.renderToStaticMarkup(<SvgRedLocation />),
         className: 'custom-red-icon',
@@ -35,23 +36,25 @@ function MyMap({ phones, defaultCenter,OnSelectedLocationChange ,selectedLocatio
         OnSelectedLocationChange(newLocation);
     }
 
-    async function handleSendLocation(phoneId, lat, lng) {
+    async function handleSendLocation(phoneId, lat, lng, description) {
         try {
             const response = await axios.post(`http://127.0.0.1:8000/api/target-locations`, {
                 phone_id: phoneId,
                 latitude: lat,
                 longitude: lng,
+                description: description,
             });
-
+    
             // Log success
             console.log('Location sent to the database:', response.data);
             addTargetLocation(response.data.data);
-
+    
             OnSelectedLocationChange(null);
         } catch (error) {
             console.error('Error sending location:', error);
         }
     }
+    
 
     // Event handler for map events
     function MapEvents() {
@@ -87,15 +90,23 @@ function MyMap({ phones, defaultCenter,OnSelectedLocationChange ,selectedLocatio
                 <Marker key={index} position={[phone.latitude, phone.longitude]}>
                     <Popup>
                         <div>
+                       
                             <p>Owner: {phone.phone.ownerName}</p>
                             <p>Phone Model: {phone.phone.libelle}</p>
                             <p>Type: {phone.phone.type}</p>
                             <p>City: {phone.phone.city}</p>
                             <p>Phone Number: {phone.phone.phoneNumber}</p>
                             <p>Email: {phone.phone.email}</p>
-                            <button className='sendLocationButton' onClick={() => handleSendLocation(phone.phone.id, selectedLocation ? selectedLocation[0] : phone.latitude, selectedLocation ? selectedLocation[1] : phone.longitude)}>
-                                Send a location
-                            </button>
+                            {selectedLocation && (
+                 <div>
+       <input type="text" placeholder="Description: " onChange={(e) => setDescription(e.target.value)} />
+<button className='sendLocationButton' onClick={() => handleSendLocation(phone.phone.id, selectedLocation ? selectedLocation[0] : phone.latitude, selectedLocation ? selectedLocation[1] : phone.longitude, description)}>
+    Send a location
+</button>
+
+               </div>
+)}
+
                         </div>
                     </Popup>
                 </Marker>

@@ -100,8 +100,8 @@ function AddPhone() {
             }
         }
     }
-    const addNewPhone = (phone) => {
-        setPhones([phone, ...phones]);
+    const addPhoneToTop = (newPhone) => {
+        setPhones((prevPhones) => [newPhone, ...prevPhones]);
     };
 
     return (
@@ -111,7 +111,7 @@ function AddPhone() {
                 <div className="descreptionCC imSignContainer">
                     <div className="textSign">Your  Please Enter Your Appreils Information</div>
                     <AddPhoneForme 
-                    fetchPhones={fetchPhones}
+                    AddPhone={addPhoneToTop}
                      />
                 </div>
                 <div id="tableContainer" className="imageCC">

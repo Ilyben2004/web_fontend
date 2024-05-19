@@ -7,7 +7,7 @@ import Alert from 'react-bootstrap/Alert';
 
 
 
-function AddPhoneForm(fetchPhones) {
+function AddPhoneForm({ AddPhone }) {
    
     // State variables
     const [ownerName, setOwnerName] = useState('');
@@ -52,7 +52,7 @@ function AddPhoneForm(fetchPhones) {
                 setEmail('');
                 setSuccess(true);
                 setTimeout(() => setSuccess(false), 3000);
-                await fetchPhones();
+                AddPhone(response.data.data);
                            
 
             }

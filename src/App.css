@@ -37,7 +37,10 @@
   }
 }
 .sendLocationButton{
- margin-left: 20%;
- height: 40px;
- background-color:#6960f8 ;
+ margin-left: 30%;
+ height: 30px;
+ background-color:#6a60f86a ;
+ margin-top: 5%;
+ border: 1px solid rgba(0, 0, 0, 0.384);
 }
+
