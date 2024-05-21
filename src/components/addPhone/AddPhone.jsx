@@ -3,6 +3,7 @@ import Header from '../header/Header';
 import AddPhoneForme from './AddPhoneForme';
 import ListPhone from '../phoneList/ListPhone';
 import './AddPhone.css';
+import Loading from '../lodaing/Loading';
 
 function AddPhone() {
     const [phones, setPhones] = useState([]);
@@ -15,9 +16,18 @@ function AddPhone() {
         phoneNumber: '',
         email: ''
     });
+    const [showLoading, setShowLoading] = useState(true);
 
     useEffect(() => {
+        // Hide the loading component after 2 seconds
+        const timer = setTimeout(() => {
+            setShowLoading(false);
+        }, 2000);
+
         fetchPhones();
+
+        // Clear the timer if the component is unmounted before the timer completes
+        return () => clearTimeout(timer);
     }, []);
 
     async function fetchPhones() {
@@ -26,7 +36,7 @@ function AddPhone() {
             const data = await response.json();
             if (data.status) {
                 setPhones(data.data);
-                console.log(data.data)
+                console.log(data.data);
             } else {
                 console.error('Failed to fetch data:', data);
             }
@@ -100,9 +110,14 @@ function AddPhone() {
             }
         }
     }
+
     const addPhoneToTop = (newPhone) => {
         setPhones((prevPhones) => [newPhone, ...prevPhones]);
     };
+
+    if (showLoading) {
+        return <Loading />;
+    }
 
     return (
         <div className="app-containerCC">
@@ -110,22 +125,19 @@ function AddPhone() {
             <div className="containerCC">
                 <div className="descreptionCC imSignContainer">
                     <div className="textSign">Your  Please Enter Your Appreils Information</div>
-                    <AddPhoneForme 
-                    AddPhone={addPhoneToTop}
-                     />
+                    <AddPhoneForme AddPhone={addPhoneToTop} />
                 </div>
                 <div id="tableContainer" className="imageCC">
-                <ListPhone
-    phones={phones}
-    selectedPhone={selectedPhone}
-    formData={formData}
-    onEdit={handleEdit}
-    onDelete={handleDelete}
-    onUpdate={handleUpdate}
-    setSelectedPhone={setSelectedPhone} 
-    setFormData={setFormData}
-/>
-
+                    <ListPhone
+                        phones={phones}
+                        selectedPhone={selectedPhone}
+                        formData={formData}
+                        onEdit={handleEdit}
+                        onDelete={handleDelete}
+                        onUpdate={handleUpdate}
+                        setSelectedPhone={setSelectedPhone}
+                        setFormData={setFormData}
+                    />
                 </div>
             </div>
         </div>

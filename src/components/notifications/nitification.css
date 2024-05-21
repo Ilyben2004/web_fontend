@@ -1,0 +1,9 @@
+#notificationContainer{
+    width: 70%;
+    height: 100vh;
+    margin-left: 15%;
+    background-color: white;
+    box-shadow: -3px 15px 41px 0px rgba(0,0,0,0.40);
+-webkit-box-shadow: -3px 15px 41px 0px rgba(0,0,0,0.40);
+-moz-box-shadow: -3px 15px 41px 0px rgba(0,0,0,0.40);
+}

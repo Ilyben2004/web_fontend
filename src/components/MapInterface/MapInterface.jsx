@@ -4,18 +4,24 @@ import Header from '../header/Header';
 import MyMap from '../mapContainer/MyMap';
 import './mapInterface.css';
 import Sidebar from './Sidebar';
-import TargetLocations from './TargetLocations'
+import TargetLocations from './TargetLocations';
+import Loading from '../lodaing/Loading';
 
 function MapInterface() {
-    // State for default center
     const [defaultCenter, setDefaultCenter] = useState([0, 0]);
     const [selectedLocation, setSelectedLocation] = useState(null);
-
-
     const [phones, setPhones] = useState([]);
     const [targetLocations, setTargetLocations] = useState([]);
+    const [showLoading, setShowLoading] = useState(true);
 
-    
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowLoading(false);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
     useEffect(() => {
         const fetchData = () => {
             axios.get('http://127.0.0.1:8000/api/locations')
@@ -36,48 +42,46 @@ function MapInterface() {
                 });
         };
         fetchDataTargetLocations();
-
         fetchData();
         
         const intervalId = setInterval(fetchData, 5000);
         return () => clearInterval(intervalId);
     }, []);
 
-    
-    // Define a handler to update the default center
     const handleDefaultCenterChange = (newCenter) => {
         setDefaultCenter(newCenter);
     };
+
     const handleSelectedLocations = (newCenter) => {
         setSelectedLocation(newCenter);
     };
-    const filterTargetLocations = (id) => {
-       setTargetLocations(targetLocations.filter((phone) => phone.id !== id));
 
+    const filterTargetLocations = (id) => {
+        setTargetLocations(targetLocations.filter((phone) => phone.id !== id));
     };
+
     const addTargetLocation = (newTargetLocation) => {
-        // Use setTargetLocations to update the state with a new array that includes the new target location
         setTargetLocations((prevTargetLocations) => [...prevTargetLocations, newTargetLocation]);
     };
 
+    if (showLoading) {
+        return <Loading />;
+    }
 
     return (
         <div className="app-containerCC">
             <Header />
-           
             <div className='HomeContainercc'>
                 <div id="sideBarContainer">
                     <Sidebar phones={phones} defaultCenter={defaultCenter} onDefaultCenterChange={handleDefaultCenterChange} />
                 </div>
                 <div id="mapContainer">
-                    <MyMap phones={phones} defaultCenter={defaultCenter} selectedLocation={selectedLocation} OnSelectedLocationChange={handleSelectedLocations} addTargetLocation={addTargetLocation}  />
+                    <MyMap phones={phones} defaultCenter={defaultCenter} selectedLocation={selectedLocation} OnSelectedLocationChange={handleSelectedLocations} addTargetLocation={addTargetLocation} />
                 </div>
                 <div id="sideBarContainer">
-                    <TargetLocations phones={targetLocations} selectedLocation={selectedLocation} defaultCenter={defaultCenter} onDefaultCenterChange={handleDefaultCenterChange} OnSelectedLocationChange={handleSelectedLocations} filterTargetLocations={filterTargetLocations}  />
+                    <TargetLocations phones={targetLocations} selectedLocation={selectedLocation} defaultCenter={defaultCenter} onDefaultCenterChange={handleDefaultCenterChange} OnSelectedLocationChange={handleSelectedLocations} filterTargetLocations={filterTargetLocations} />
                 </div>
-             
             </div>
-            
         </div>
     );
 }

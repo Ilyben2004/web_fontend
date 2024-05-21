@@ -6,6 +6,8 @@ import Signup from './components/signup/Signup';
 import AddPhone from './components/addPhone/AddPhone';
 import Phones from './components/phoneList/Phones'
 import MapInterface from './components/MapInterface/MapInterface';
+import Notifications from './components/notifications/Notifications';
+import Loading from './components/lodaing/Loading';
 
 
 
@@ -22,6 +24,10 @@ function App() {
         <Route path='addphone' element={<AddPhone />} />
         <Route path='phones' element={<Phones />} />
         <Route path='map' element={<MapInterface />} />
+        <Route path='notification' element={<Notifications />} />
+        <Route path='loading' element={<Loading />} />
+
+
 
 
 

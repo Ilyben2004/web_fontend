@@ -10,7 +10,7 @@ function LoginForm({
   apiEndpoint = 'http://127.0.0.1:8000/api/auth/login', // Default login endpoint
   onLoginSuccess, // Callback for successful login
   onLoginFailure, // Callback for login failure
-  redirectUrl = '/dashboard', // Default URL to redirect on successful login
+  redirectUrl = '/map', // Default URL to redirect on successful login
 }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
