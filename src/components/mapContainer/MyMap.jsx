@@ -99,7 +99,7 @@ function MyMap({ phones, defaultCenter,OnSelectedLocationChange ,selectedLocatio
                             <p>Email: {phone.phone.email}</p>
                             {selectedLocation && (
                  <div>
-       <input type="text" placeholder="Description: " onChange={(e) => setDescription(e.target.value)} />
+       <input type="text" placeholder="Task Description: " onChange={(e) => setDescription(e.target.value)} />
 <button className='sendLocationButton' onClick={() => handleSendLocation(phone.phone.id, selectedLocation ? selectedLocation[0] : phone.latitude, selectedLocation ? selectedLocation[1] : phone.longitude, description)}>
     Send a location
 </button>

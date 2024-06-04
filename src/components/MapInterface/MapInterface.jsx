@@ -7,7 +7,7 @@ import Sidebar from './Sidebar';
 import TargetLocations from './TargetLocations';
 import Loading from '../lodaing/Loading';
 
-function MapInterface() {
+function MapInterface({isLoggedIn}) {
     const [defaultCenter, setDefaultCenter] = useState([0, 0]);
     const [selectedLocation, setSelectedLocation] = useState(null);
     const [phones, setPhones] = useState([]);
@@ -70,7 +70,7 @@ function MapInterface() {
 
     return (
         <div className="app-containerCC">
-            <Header />
+            <Header isLoggedIn={isLoggedIn} />
             <div className='HomeContainercc'>
                 <div id="sideBarContainer">
                     <Sidebar phones={phones} defaultCenter={defaultCenter} onDefaultCenterChange={handleDefaultCenterChange} />

@@ -52,10 +52,11 @@ export default function TargetLocations({ phones, onDefaultCenterChange, OnSelec
                     
                     // Format the date and time
                     const formattedDateTime = format(updatedAt, 'MM/dd/yyyy HH:mm:ss');
-                    
+                    const containerClass = phone.visited === 1 ? 'phoneContainer visited' : 'phoneContainer';
+console.log("viiisiiiited is : "+phone.visited)
                     return (
                         <div
-                            className='phoneContainer'
+                            className={containerClass}
                             key={index}
                             onClick={() => handleButtonClick(phone.latitude, phone.longitude)}
                         >

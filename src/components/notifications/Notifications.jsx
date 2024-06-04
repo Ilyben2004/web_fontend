@@ -5,7 +5,7 @@ import './nitification.css';
 import NotificationsList from './NotificationsList';
 import Loading from '../lodaing/Loading';
 
-function Notifications() {
+function Notifications({isLoggedIn}) {
     const [showLoading, setShowLoading] = useState(true);
 
     useEffect(() => {
@@ -24,7 +24,7 @@ function Notifications() {
 
     return (
         <div className="app-containerCC">
-            <Header />
+            <Header isLoggedIn={isLoggedIn} />
             <div className='HomeContainercc'>
                 <div id="notificationContainer">
                     <NotificationsList />

@@ -11,6 +11,7 @@ function LoginForm({
   onLoginSuccess, // Callback for successful login
   onLoginFailure, // Callback for login failure
   redirectUrl = '/map', // Default URL to redirect on successful login
+  handleLogin,
 }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,6 +42,9 @@ function LoginForm({
         // Redirect to the specified URL
       
         navigate(redirectUrl);
+        localStorage.setItem('isLogin', '1');
+
+        handleLogin();
       } else {
         // If login was not successful, update the error state with the message
         setError(data.message);

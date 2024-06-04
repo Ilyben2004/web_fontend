@@ -22,7 +22,7 @@
    left: 50%;
    transform: translate(-50%, -50%);
    width: 30%;
-   height: 70%;
+   height: 60%;
    background-color: rgb(241, 241, 236);
    -webkit-box-shadow: 2px 3px 90px -11px rgba(0,0,0,0.57);
    -moz-box-shadow: 2px 3px 90px -11px rgba(0,0,0,0.57);
@@ -47,6 +47,9 @@
    align-items: center; /* Vertically center content */
    justify-content: center; /* Horizontally center content */
 }
+.updateForm tr{
+   margin-top: 4%;
+}
 
 svg#svgUpdate {
    height: 120px;
@@ -55,10 +58,15 @@ svg#svgUpdate {
 #ubdateButton{
    background-color: #6960f8;
 }
+#ubdateButton:hover{
+   background-color: #4337e6;
+}
 #cancelButton{
    background-color: rgba(246, 95, 95, 0.635);
 }
-
+#cancelButton:hover{
+   background-color: rgba(246, 95, 95, 0.935);
+}
 .tableContainer{
    padding-left: 15%;
     

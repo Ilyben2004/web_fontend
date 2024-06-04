@@ -5,7 +5,12 @@ import { MdDelete } from 'react-icons/md';
 import './listphone.css';
 import PhoneSvg from './PhoneSvg';
 
+
 function ListPhone({ phones, selectedPhone, formData, onEdit, onDelete, onUpdate, setSelectedPhone, setFormData  }) {
+    const deletePhone = (idPhone) => {
+     setSelectedPhone(null);
+     onDelete(idPhone)
+    };
     return (
         <div id="tableContainerInsinde">
             <Table id='PhonesTableList' responsive>
@@ -36,20 +41,18 @@ function ListPhone({ phones, selectedPhone, formData, onEdit, onDelete, onUpdate
                                     className='icons edit'
                                     onClick={() => onEdit(phone)}
                                 />
-                                <MdDelete
-                                    className='icons delete'
-                                    onClick={() => onDelete(phone.id)}
-                                />
+                             
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </Table>
             {selectedPhone && (
-                <div className="formContainer">
-                    <form className='updateForm' onSubmit={onUpdate}>
+                <div className="formContainer"  onClick={() => setSelectedPhone(null)}  >
+                    <form className='updateForm' onSubmit={onUpdate} onClick={(e) => e.stopPropagation()}  >
                         <div className="header">
                             <PhoneSvg />
+
                         </div>
                         <hr />
                         <div className="tableContainer">
@@ -120,7 +123,7 @@ function ListPhone({ phones, selectedPhone, formData, onEdit, onDelete, onUpdate
                         </div>
                         <div className="button-container">
                             <button id="ubdateButton" type="submit">Update</button>
-                            <button id="cancelButton" type="button" onClick={() => setSelectedPhone(null)}>Cancel</button>
+                            <button id="cancelButton" type="button" onClick={() => deletePhone(selectedPhone.id)}>Delete</button>
                         </div>
                     </form>
                 </div>

@@ -49,3 +49,16 @@
 #navigator .currentRoot {
     color: #5C54AD;
 }
+#logoutContainer{
+    margin-left: 33%;
+    padding-top: 0.5%;
+}
+#logoutIcon{
+    font-size: 30px;
+    color: black;
+}
+#logoutIcon:hover{
+    color: #5C54AD;
+
+    
+}

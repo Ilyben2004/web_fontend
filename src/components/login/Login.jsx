@@ -14,7 +14,7 @@ import {Link} from 'react-router-dom';
 
 
 
-function Login() {
+function Login({ handleLogin }) {
     return (
        
             
@@ -26,7 +26,7 @@ function Login() {
                     <div className="loginFormCC">
                        
                         <div className="imLoginContainer">
-                         <LoginForm />
+                         <LoginForm handleLogin={handleLogin} />
                    
 
                          </div>

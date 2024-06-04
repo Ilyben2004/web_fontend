@@ -49,3 +49,6 @@ border-bottom: rgba(0, 0, 0, 0.103) 0.4px solid;
 .delete-svg-container:hover .delete-svg path {
   stroke: rgb(209, 98, 98); /* Change the stroke color of the path to red on hover */
 }
+.visited{ 
+  background-color: rgba(110, 243, 110, 0.42);
+}

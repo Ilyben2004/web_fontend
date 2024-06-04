@@ -5,7 +5,7 @@ import ListPhone from '../phoneList/ListPhone';
 import './AddPhone.css';
 import Loading from '../lodaing/Loading';
 
-function AddPhone() {
+function AddPhone({isLoggedIn}) {
     const [phones, setPhones] = useState([]);
     const [selectedPhone, setSelectedPhone] = useState(null);
     const [formData, setFormData] = useState({
@@ -121,7 +121,7 @@ function AddPhone() {
 
     return (
         <div className="app-containerCC">
-            <Header />
+            <Header isLoggedIn={isLoggedIn} />
             <div className="containerCC">
                 <div className="descreptionCC imSignContainer">
                     <div className="textSign">Your  Please Enter Your Appreils Information</div>
